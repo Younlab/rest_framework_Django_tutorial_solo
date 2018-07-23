@@ -3,15 +3,20 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from rest_framework.renderers import JSONRenderer
 
-from .serializers import SnippetSerializer
-from .models import Snippet
+from ..serializers import SnippetSerializer
+from ..models import Snippet
 
+__all__ = (
+    'snippet_list',
+    'snippet_detail',
+)
 
 class JsonResponse(HttpResponse):
     def __init__(self, data, **kwargs):
         content = JSONRenderer().render(data)
         kwargs['content_type'] = 'application/json'
         super().__init__(content, **kwargs)
+
 @csrf_exempt
 def snippet_list(request):
     if request.method == 'GET':
