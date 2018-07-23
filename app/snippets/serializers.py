@@ -14,3 +14,4 @@ class SnippetSerializer(serializers.ModelSerializer):
             'language',
             'style',
         )
+
